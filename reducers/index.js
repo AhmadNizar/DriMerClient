@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import userReducer from './userReducer'
+import quisionerReducer from './quisionerReducer'
 
 const rootReducer = combineReducers({
-  userReducer
+  userReducer,
+  quisionerReducer
 })
 
 export default rootReducer

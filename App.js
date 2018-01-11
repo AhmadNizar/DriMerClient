@@ -23,12 +23,14 @@ import Quisioner from './components/screens/Quisioner';
 import Register from './components/screens/Register';
 import Login from './components/screens/Login';
 import Dashboard from './components/screens/Dashboard';
+import Suggestion from './components/screens/Suggestion';
 
 
 const NavigationBase = StackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
-  Quisioner: { screen: Quisioner }
+  Quisioner: { screen: Quisioner },
+  Suggestion: { screen: Suggestion }
 })
 
 const NavigationTab = TabNavigator({

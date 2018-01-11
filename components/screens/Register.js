@@ -1,9 +1,7 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet, Text, View, Image, TextInput, Button, ScrollView, TouchableOpacity, Picker } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View, Image, TextInput, Button, ScrollView, TouchableOpacity, Picker, Alert } from "react-native";
 import { connect } from 'react-redux'
 import { actionRegister } from '../../actions/userAction'
-
-
 class Register extends React.Component {
   static navigationOptions = {
     headerStyle: {
@@ -11,8 +9,8 @@ class Register extends React.Component {
     },
     title: "Register",
   }
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       email: '',
@@ -24,14 +22,10 @@ class Register extends React.Component {
       isLoading: false
     }
   }
-
-
   register = () => {
-
     this.setState({
       isLoading: true
     })
-
     let dataUser = {
       name: this.state.name,
       email: this.state.email,
@@ -40,19 +34,33 @@ class Register extends React.Component {
       gender: this.state.gender
     }
     this.props.register(dataUser)
-
-    this.setState({
-      isLoading: false
-    })
-
   }
-
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.isSuccess) {
+      Alert.alert(
+        'Success',
+        'Register success',
+        [
+          {text: 'OK', onPress: () => this.props.navigation.navigate('Login')},
+        ],
+        { cancelable: false }
+      )
+    }
+  }
   render() {
-    
+    console.log(this.props.isSuccess)
+    var tunggu = <Text>Tunggu</Text>
+    if(this.state.isLoading == false) {
+      tunggu = <Text></Text>
+    } else if(this.state.isSuccess == true) {
+      tunggu = <Text></Text>
+    } else {
+      tunggu = <ActivityIndicator />
+    }
     return (
       <View style={styles.container}>
         <Text>{this.state.err}</Text>
-        
+        {tunggu}
         <View style={{ width: 300 }}>
           <TextInput placeholder="Name" onChangeText={(text) => this.setState({ name: text })} />
           <TextInput placeholder="Email" onChangeText={(text) => this.setState({ email: text })} />
@@ -73,7 +81,6 @@ class Register extends React.Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -91,17 +98,14 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 })
-
 const mapStateToProps = (state) => {
   return {
     isSuccess: state.userReducer.isSuccess
   }
 }
-
 const mapActionToProps = (dispatch) => {
   return {
     register: (userData) => { dispatch(actionRegister(userData)) }
   }
 }
-
 export default connect(mapStateToProps, mapActionToProps)(Register)

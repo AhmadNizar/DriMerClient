@@ -9,7 +9,7 @@ export const actionRegister = (dataUser) => {
       age: dataUser.age,
       gender: dataUser.gender
     })
-      .then((dataUser) => {
+      .then((resultDataUser) => {
         dispatch(getDataRegister(true))
       })
       .catch((reason) => {
@@ -33,5 +33,18 @@ export const signInAction = (dataUser) => {
       email: dataUser.email,
       password: dataUser.password
     })
+      .then((resultDataUser) => {
+        dispatch(getDataLogin(resultDataUser.data))
+      })
+      .catch((reason) => {
+        console.log(reason)
+      })
+  }
+}
+
+const getDataLogin = (dataUser) => {
+  return {
+    type: 'get_token_user',
+    payload: dataUser
   }
 }

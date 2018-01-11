@@ -17,12 +17,14 @@ class Login extends React.Component {
     }
   }
 
-  signin() {
+  signin = () => {
     let dataUser = {
       email: this.state.email,
       password: this.state.password
     }
     this.props.signin(dataUser)
+    
+    this.props.navigation.navigate('Quisioner')
   }
 
   loginFacebook() {
