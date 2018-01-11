@@ -1,8 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from "react-native";
 import { SocialIcon } from 'react-native-elements'
+import { signInAction } from '../../actions/userAction'
+import { connect } from 'react-redux'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   static navigationOptions = {
     header: null
   }
@@ -16,7 +18,11 @@ export default class Login extends React.Component {
   }
 
   signin() {
-    alert("Signin")
+    let dataUser = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    this.props.signin(dataUser)
   }
 
   loginFacebook() {
@@ -40,7 +46,6 @@ export default class Login extends React.Component {
               title='Sign In With Facebook'
               button
               type='facebook'
-
               onPress={this.loginFacebook}
             />
           </View>
@@ -83,3 +88,11 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline"
   }
 })
+
+const mapActionToProps = (dispatch) => {
+  return {
+    signin: (dataUser) => dispatch(signInAction(dataUser))
+  }
+}
+
+export default connect(null, mapActionToProps)(Login)

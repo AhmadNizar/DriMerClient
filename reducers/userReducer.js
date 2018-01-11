@@ -1,15 +1,14 @@
 const initialState = {
-
-  email: '',
-  token: ''
+  isSuccess: ''
 }
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'signin':
-      return { ...state, email: action.payload.email, token: action.payload.token }
+    case 'get_data_register':
+      console.log('ini action di reducer', action)
+      return { ...state, isSuccess: action.payload }
     case 'signout':
-      return {...state, email: '', password: ''}
+      return { ...state }
     default:
       return state
   }
