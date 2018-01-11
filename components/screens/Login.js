@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from "react-native";
+import { SocialIcon } from 'react-native-elements'
 
 export default class Login extends React.Component {
   static navigationOptions = {
@@ -17,6 +18,10 @@ export default class Login extends React.Component {
   signin() {
     alert("Signin")
   }
+
+  loginFacebook() {
+    alert("Login Fb")
+  }
   render() {
     const { navigate } = this.props.navigation
     return (
@@ -29,6 +34,15 @@ export default class Login extends React.Component {
             <TextInput placeholder="Email" onChangeText={(text) => this.setState({ email: text })} />
             <TextInput placeholder="Password" onChangeText={(text) => this.setState({ password: text })} />
             <Button color="#0099e6" title="Signin" onPress={() => this.signin()} />
+          </View>
+          <View>
+            <SocialIcon
+              title='Sign In With Facebook'
+              button
+              type='facebook'
+
+              onPress={this.loginFacebook}
+            />
           </View>
           <View>
             <Text style={{ textAlign: "center" }} >or</Text>

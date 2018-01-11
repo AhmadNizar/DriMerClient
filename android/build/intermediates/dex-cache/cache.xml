@@ -156,6 +156,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/home/ameliarahman/Hacktiv8/Fase3-mastery/DriMer/DriMerClient/android/app/build/intermediates/exploded-aar/DriMerClient/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="722e34ba5d4009c2551aca051aee8bd56cbdc19c">
+        <dex dex="/home/ameliarahman/Hacktiv8/Fase3-mastery/DriMer/DriMerClient/android/app/build/intermediates/pre-dexed/debug/DriMerClient-react-native-vector-icons-unspecified_9226e7f9cc7cf43eef133f52062a03b5aa796603.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/ameliarahman/Hacktiv8/Fase3-mastery/DriMer/DriMerClient/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
         jumboMode="false"
         optimize="true"

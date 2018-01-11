@@ -12,12 +12,17 @@ import {
   View
 } from 'react-native';
 import {
-  StackNavigator
+  StackNavigator,
+  TabNavigator
 } from 'react-navigation';
+
+import store from './store'
+import { Provider } from 'react-redux'
 
 import Quisioner from './components/screens/Quisioner';
 import Register from './components/screens/Register';
 import Login from './components/screens/Login';
+import Dashboard from './components/screens/Dashboard';
 
 
 const NavigationBase = StackNavigator({
@@ -26,10 +31,18 @@ const NavigationBase = StackNavigator({
   Quisioner: { screen: Quisioner }
 })
 
+const NavigationTab = TabNavigator({
+  Dashboard: { screen: Dashboard }
+})
+
 export default class App extends Component<{}> {
   render() {
     return (
-      <NavigationBase />
+      <Provider store={store} >
+        <NavigationBase />
+        {/* // <NavigationTab /> */}
+
+      </Provider>
     );
   }
 }

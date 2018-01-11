@@ -1,8 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button, ScrollView, TouchableOpacity, Picker } from "react-native";
+import { connect } from 'react-redux'
+import { actionRegister } from '../../actions/userAction'
 
 
-export default class Register extends React.Component {
+class Register extends React.Component {
   static navigationOptions = {
     headerStyle: {
       backgroundColor: '#F5FCFF'
@@ -22,7 +24,15 @@ export default class Register extends React.Component {
   }
 
   register() {
-    alert("Register")
+    let dataUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      age: this.state.age,
+      gender: this.state.gender
+    }
+    this.props.register(dataUser)
+    // this.props.navigation.navigate('Quisioner')
   }
 
 
@@ -36,12 +46,12 @@ export default class Register extends React.Component {
             <Picker
               selectedValue={this.state.gender}
               onValueChange={(itemValue, itemIndex) => this.setState({ gender: itemValue })}>
+              <Picker.Item label="Your Gender" value="" />
               <Picker.Item label="Female" value="Female" />
               <Picker.Item label="Male" value="Male" />
             </Picker>
           </View>
           <TextInput placeholder="Password" onChangeText={(text) => this.setState({ password: text })} />
-          <TextInput placeholder="Confirm Password" onChangeText={(text) => this.setState({ age: text })} />
           <Button color="#0099e6" title="Register" onPress={() => this.register()} />
         </View>
       </View>
@@ -60,3 +70,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
   }
 })
+
+const mapActionToProps = (dispatch) => {
+  return {
+    register: (userData) => { dispatch(actionRegister(userData)) }
+  }
+}
+
+export default connect(null, mapActionToProps)(Register)
